@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML>
+<html lang="en" ng-app="main">
+<head>
+  <link href="css/app.css" rel="stylesheet" type="text/css" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="css/bootstrap.min.css" rel="stylesheet">  
+  <title>Top 100 iOS apps</title>
+</head>
+
+<body ng-controller="HomeCtrl">
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="#">Top 100 iOS Apps</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container">
+  <div class="row" align="center">
+    <div class="col-md-12">
+      <div class='preview-chart'>
+        <pie-chart data="data" options="options"></pie-chart>
+      </div>    
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <input type="search" class="form-control" ng-model="q" placeholder="filter apps..." />   
+    </div>  
+    <div class="col-xs-6">
+      <select ng-model="sortExpression" class="form-control">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="date">Date</option>
+      </select>    
+    </div>
+
+  </div>
+  <br/>  
+  <div class="row">
+    <div class="col-md-6" ng-repeat="app in apps | orderBy:mySortFunction | filter:q " >
+        <img src="{{app.thumb}}" style="float:left">
+        <p>
+          {{app.name}}<br/>
+          {{app.category}}<br/>
+          {{app.price}}
+        </p>  
+    </div>
+  </div>  
+</div>
+
+</body>
+
+<script src="js/angular.min.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/apojop.min.js"></script>
+<script src="js/pie-chart.min.js"></script>
+<script src="js/main.js"></script>
+</html>
